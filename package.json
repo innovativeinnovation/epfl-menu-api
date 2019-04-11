@@ -1,0 +1,20 @@
+{
+  "name": "epfl-menu-api",
+  "version": "0.0.1",
+  "description": "EPFL menu API",
+  "keywords": [
+    "EPFL",
+    "menu",
+    "food",
+    "api"
+  ],
+  "author": "William Belle <william.belle@gmail.com>",
+  "license": "Apache-2.0",
+  "repository": "https://github.com/innovativeinnovation/epfl-menu-api.git",
+  "engines": {
+    "node": ">=8"
+  },
+  "scripts": {},
+  "devDependencies": {},
+  "dependencies": {}
+}
