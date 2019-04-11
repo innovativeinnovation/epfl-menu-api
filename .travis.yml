@@ -1,0 +1,8 @@
+# (c) William Belle, 2019.
+# See the LICENSE file for more details.
+
+language: node_js
+node_js:
+  - "11"
+  - "10"
+  - "8"
