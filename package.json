@@ -15,7 +15,9 @@
     "node": ">=8"
   },
   "scripts": {
-    "test": "eslint . && mocha"
+    "test": "eslint . && mocha",
+    "coverage": "nyc mocha",
+    "coveralls": "npm run coverage && nyc report --reporter=text-lcov | coveralls"
   },
   "devDependencies": {
     "chai": "^4.2.0",
@@ -28,6 +30,7 @@
     "mocha": "^6.1.2"
   },
   "dependencies": {
-    "got": "^9.6.0"
+    "got": "^9.6.0",
+    "nyc": "^13.3.0"
   }
 }
