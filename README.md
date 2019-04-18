@@ -47,16 +47,38 @@ epflMenuApi.findMenu().then(function(menus) {
 }).catch(function(err) {
   console.log(err);
 });
+
+epflMenuApi.findMenu('soir', 'fr').then(function(menus) {
+  console.log(menus[0].restoName);  //=> 'La Table de Vallotton by Shangri-La'
+  console.log(menus[0].menuType);   //=> 'Take away 1'
+  console.log(menus[0].menuTags);   //=> 'Chinois'
+}).catch(function(err) {
+  console.log(err);
+});
 ```
 
 API
 ---
 
-### .findMenu()
+### .findMenu(partOfDay, language)
 
 Type: `function`
 
 Returns a Promise with a list of menu as parameter.
+
+##### partOfDay
+
+Type: `string`<br>
+Default: `midi`
+
+Part of the day. Could be midday (`midi`) or evening (`soir`).
+
+##### language
+
+Type: `string`<br>
+Default: `en`
+
+Supported language are English(`en`) and French(`fr`).
 
 See also
 --------
