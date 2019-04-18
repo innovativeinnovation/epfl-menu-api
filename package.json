@@ -1,12 +1,13 @@
 {
   "name": "epfl-menu-api",
   "version": "0.0.1",
-  "description": "EPFL menu API",
+  "description": "EPFL Menu API",
   "keywords": [
     "EPFL",
-    "menu",
+    "api",
     "food",
-    "api"
+    "meal",
+    "menu"
   ],
   "author": "William Belle <william.belle@gmail.com>",
   "license": "Apache-2.0",
@@ -14,6 +15,7 @@
   "engines": {
     "node": ">=8"
   },
+  "main": "src/index.js",
   "scripts": {
     "test": "eslint . && mocha",
     "coverage": "nyc mocha",
