@@ -60,6 +60,15 @@ epflMenuApi.findMenu({
 }).catch(function(err) {
   console.log(err);
 });
+
+epflMenuApi.findResto().then(function(restos) {
+  console.log(restos[0].restoName);  //=> 'L'Esplanade'
+  console.log(restos[0].restoID);    //=> '32'
+  console.log(restos[0].type);       //=> 'self-service'
+  console.log(restos[0].plan);       //=> 'CO160'
+}).catch(function(err) {
+  console.log(err);
+});
 ```
 
 API
@@ -121,7 +130,13 @@ Pasta: `Pâtes`<br>
 Pizza: `Pizza`<br>
 Thai: `Thaï`<br>
 Vegan: `Végétalien`<br>
-Vegetarian: `Végétarien`<br>
+Vegetarian: `Végétarien`
+
+### .findResto()
+
+Type: `function`
+
+Returns a Promise with a list of restaurant as parameter.
 
 See also
 --------
