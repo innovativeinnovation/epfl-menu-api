@@ -6,6 +6,7 @@
 const got = require('got');
 
 const MENUS_URL = 'https://menus.epfl.ch/cgi-bin/ws-getMenus';
+const RESTOS_URL = 'https://menus.epfl.ch/cgi-bin/ws-getRestos';
 
 const DEFAULT_MENUS_OPTIONS = {
   language: 'en',
@@ -36,6 +37,15 @@ exports.findMenu = (opts = DEFAULT_MENUS_OPTIONS) => {
     got(url).then((response) => {
       const data = JSON.parse(response.body);
       resolve(data.menus);
+    }).catch((err) => reject(err));
+  });
+};
+
+exports.findResto = () => {
+  return new Promise((resolve, reject) => {
+    got(RESTOS_URL).then((response) => {
+      const data = JSON.parse(response.body);
+      resolve(data.restos);
     }).catch((err) => reject(err));
   });
 };
