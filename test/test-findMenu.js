@@ -12,7 +12,11 @@ describe('epfl-menu-api findMenu', function () {
   this.timeout(10000);
 
   it('should contains at least 5 menus', function () {
-    return epflMenuApi.findMenu().then((menus) => {
+    return epflMenuApi.findMenu({
+      date: '18/04/2019',
+      restoId: '22',
+      tags: 'Viande,Volaille,Pizza'
+    }).then((menus) => {
       var enoughMenus = Object.keys(menus).length > 4;
       enoughMenus.should.equal(true);
     });

@@ -48,10 +48,15 @@ epflMenuApi.findMenu().then(function(menus) {
   console.log(err);
 });
 
-epflMenuApi.findMenu('soir', 'fr').then(function(menus) {
+epflMenuApi.findMenu({
+  language: 'fr',
+  partOfDay: 'soir',
+  date: '18/04/2019',
+  tags: 'Viande,Poisson,Japonais'
+}).then(function(menus) {
   console.log(menus[0].restoName);  //=> 'La Table de Vallotton by Shangri-La'
-  console.log(menus[0].menuType);   //=> 'Take away 1'
-  console.log(menus[0].menuTags);   //=> 'Chinois'
+  console.log(menus[0].menuType);   //=> 'Take away 2'
+  console.log(menus[0].menuTags);   //=> 'Chinois,Viande'
 }).catch(function(err) {
   console.log(err);
 });
@@ -60,25 +65,63 @@ epflMenuApi.findMenu('soir', 'fr').then(function(menus) {
 API
 ---
 
-### .findMenu(partOfDay, language)
+### .findMenu([options])
 
 Type: `function`
 
 Returns a Promise with a list of menu as parameter.
 
-##### partOfDay
+##### options
+
+Type: `object`
+
+Any of the following options.
+
+###### partOfDay
 
 Type: `string`<br>
 Default: `midi`
 
 Part of the day. Could be midday (`midi`) or evening (`soir`).
 
-##### language
+###### language
 
 Type: `string`<br>
 Default: `en`
 
 Supported language are English(`en`) and French(`fr`).
+
+###### restoId
+
+Type: `number`<br>
+
+Restaurant id.
+
+###### date
+
+Type: `date`<br>
+
+Date. Example: `18/04/2019`.
+
+###### tags
+
+Type: `string`<br>
+
+A comma separated list of menu types. Available tags:
+
+Chicken: `Volaille`<br>
+Chinese: `Chinois`<br>
+Fish: `Poisson`<br>
+Green Fork: `Fourchette Verte`<br>
+Indian: `Indien`<br>
+Japanese: `Japonais`<br>
+Lebanese: `Libanais`<br>
+Meat: `Viande`<br>
+Pasta: `Pâtes`<br>
+Pizza: `Pizza`<br>
+Thai: `Thaï`<br>
+Vegan: `Végétalien`<br>
+Vegetarian: `Végétarien`<br>
 
 See also
 --------
