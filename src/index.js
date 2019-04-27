@@ -28,6 +28,14 @@ let buildMenuUrl = (opts) => {
   return MENUS_URL + queryParameters;
 };
 
+let buildRestoUrl = (id) => {
+  var queryParameters = '';
+  if (id) {
+    queryParameters = '?resto_id=' + id;
+  }
+  return RESTOS_URL + queryParameters;
+};
+
 exports.findMenu = (opts = DEFAULT_MENUS_OPTIONS) => {
   opts.language = opts.language || DEFAULT_MENUS_OPTIONS.language;
   opts.partOfDay = opts.partOfDay || DEFAULT_MENUS_OPTIONS.partOfDay;
@@ -41,9 +49,10 @@ exports.findMenu = (opts = DEFAULT_MENUS_OPTIONS) => {
   });
 };
 
-exports.findResto = () => {
+exports.findResto = (id) => {
+  const url = buildRestoUrl(id);
   return new Promise((resolve, reject) => {
-    got(RESTOS_URL).then((response) => {
+    got(url).then((response) => {
       const data = JSON.parse(response.body);
       resolve(data.restos);
     }).catch((err) => reject(err));

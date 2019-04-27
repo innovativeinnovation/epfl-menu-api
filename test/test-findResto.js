@@ -18,6 +18,13 @@ describe('epfl-menu-api findResto', function () {
     });
   });
 
+  it('should find resto id 22', function () {
+    return epflMenuApi.findResto(22).then((restos) => {
+      restos[0].restoName.should.equal('Le Corbusier');
+      restos[0].plan.should.equal('SG0166');
+    });
+  });
+
   it('should fail with a wrong service url', (done) => {
     let epflMenuApiMock = rewire('../src/index.js');
     epflMenuApiMock.__set__('RESTOS_URL', 'foobar');
