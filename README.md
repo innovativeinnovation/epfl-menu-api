@@ -132,11 +132,17 @@ Thai: `Thaï`<br>
 Vegan: `Végétalien`<br>
 Vegetarian: `Végétarien`
 
-### .findResto()
+### .findResto([id])
 
 Type: `function`
 
 Returns a Promise with a list of restaurant as parameter.
+
+##### id
+
+Type: `number`
+
+Optional restaurant id.
 
 See also
 --------
