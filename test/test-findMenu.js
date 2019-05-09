@@ -18,6 +18,13 @@ describe('epfl-menu-api findMenu', function () {
     }).catch((err) => err.message.should.equal('Not a valid date'));
   });
 
+  it('should throw an exception with a language not supported', () => {
+    return epflMenuApi.findMenu({
+      language: 'de'
+    }).then(() => {
+    }).catch((err) => err.message.should.equal('Language not supported'));
+  });
+
   it('should contains at least 5 menus', function () {
     return epflMenuApi.findMenu({
       date: '18/04/2019',
