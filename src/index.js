@@ -45,6 +45,10 @@ exports.findMenu = (opts = DEFAULT_MENUS_OPTIONS) => {
   opts.language = opts.language || DEFAULT_MENUS_OPTIONS.language;
   opts.partOfDay = opts.partOfDay || DEFAULT_MENUS_OPTIONS.partOfDay;
 
+  if (opts.language !== 'en' && opts.language !== 'fr') {
+    return Promise.reject(new TypeError('Language not supported'));
+  }
+
   if (opts.date && !moment(opts.date, 'DD/MM/YYYY', true).isValid()) {
     return Promise.reject(new TypeError('Not a valid date'));
   }
