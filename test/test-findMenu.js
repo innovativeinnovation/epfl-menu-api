@@ -22,6 +22,16 @@ describe('epfl-menu-api findMenu', function () {
     });
   });
 
+  it('should parse menus of 07/05/2019', function () {
+    return epflMenuApi.findMenu({
+      date: '07/05/2019',
+      language: 'fr'
+    }).then((menus) => {
+      var enoughMenus = Object.keys(menus).length > 4;
+      enoughMenus.should.equal(true);
+    });
+  });
+
   it('should fail with a wrong service url', (done) => {
     let epflMenuApiMock = rewire('../src/index.js');
     epflMenuApiMock.__set__('MENUS_URL', 'foobar');

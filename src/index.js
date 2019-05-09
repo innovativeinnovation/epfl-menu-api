@@ -36,6 +36,10 @@ let buildRestoUrl = (id) => {
   return RESTOS_URL + queryParameters;
 };
 
+let escapeTab = (jsonString) => {
+  return jsonString.replace(/\t/g, '\\t');
+};
+
 exports.findMenu = (opts = DEFAULT_MENUS_OPTIONS) => {
   opts.language = opts.language || DEFAULT_MENUS_OPTIONS.language;
   opts.partOfDay = opts.partOfDay || DEFAULT_MENUS_OPTIONS.partOfDay;
@@ -43,7 +47,8 @@ exports.findMenu = (opts = DEFAULT_MENUS_OPTIONS) => {
   const url = buildMenuUrl(opts);
   return new Promise((resolve, reject) => {
     got(url).then((response) => {
-      const data = JSON.parse(response.body);
+      let jsonString = escapeTab(response.body);
+      const data = JSON.parse(jsonString);
       resolve(data.menus);
     }).catch((err) => reject(err));
   });
