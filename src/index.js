@@ -3,6 +3,7 @@
  * See the LICENSE file for more details.
  */
 
+const moment = require('moment');
 const got = require('got');
 
 const MENUS_URL = 'https://menus.epfl.ch/cgi-bin/ws-getMenus';
@@ -43,6 +44,10 @@ let escapeTab = (jsonString) => {
 exports.findMenu = (opts = DEFAULT_MENUS_OPTIONS) => {
   opts.language = opts.language || DEFAULT_MENUS_OPTIONS.language;
   opts.partOfDay = opts.partOfDay || DEFAULT_MENUS_OPTIONS.partOfDay;
+
+  if (opts.date && !moment(opts.date, 'DD/MM/YYYY', true).isValid()) {
+    return Promise.reject(new TypeError('Not a valid date'));
+  }
 
   const url = buildMenuUrl(opts);
   return new Promise((resolve, reject) => {

@@ -11,6 +11,13 @@ const epflMenuApi = require('../src/index.js');
 describe('epfl-menu-api findMenu', function () {
   this.timeout(10000);
 
+  it('should throw an exception with an invalid date', () => {
+    return epflMenuApi.findMenu({
+      date: '30/02/2019'
+    }).then(() => {
+    }).catch((err) => err.message.should.equal('Not a valid date'));
+  });
+
   it('should contains at least 5 menus', function () {
     return epflMenuApi.findMenu({
       date: '18/04/2019',
