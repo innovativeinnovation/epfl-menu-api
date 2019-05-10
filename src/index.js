@@ -49,6 +49,10 @@ exports.findMenu = (opts = DEFAULT_MENUS_OPTIONS) => {
     return Promise.reject(new TypeError('Language not supported'));
   }
 
+  if (opts.partOfDay !== 'midi' && opts.partOfDay !== 'soir') {
+    return Promise.reject(new TypeError('Part of the day not supported'));
+  }
+
   if (opts.date && !moment(opts.date, 'DD/MM/YYYY', true).isValid()) {
     return Promise.reject(new TypeError('Not a valid date'));
   }
