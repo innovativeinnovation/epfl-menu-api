@@ -25,6 +25,15 @@ describe('epfl-menu-api findMenu', function () {
     }).catch((err) => err.message.should.equal('Language not supported'));
   });
 
+  it('should throw an exception with a part of the day not supported', () => {
+    return epflMenuApi.findMenu({
+      'partOfDay': 'morning'
+    }).then(() => {
+    }).catch(
+      (err) => err.message.should.equal('Part of the day not supported')
+    );
+  });
+
   it('should contains at least 5 menus', function () {
     return epflMenuApi.findMenu({
       date: '18/04/2019',
