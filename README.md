@@ -88,48 +88,48 @@ Any of the following options.
 
 ###### partOfDay
 
-Type: `string`<br>
+Type: `string`  
 Default: `midi`
 
 Part of the day. Could be midday (`midi`) or evening (`soir`).
 
 ###### language
 
-Type: `string`<br>
+Type: `string`  
 Default: `en`
 
-Supported language are English(`en`) and French(`fr`).
+Supported language are English (`en`) and French (`fr`).
 
 ###### restoId
 
-Type: `number`<br>
+Type: `number`
 
 Restaurant id.
 
 ###### date
 
-Type: `date`<br>
+Type: `date`
 
 Date. Example: `18/04/2019`.
 
 ###### tags
 
-Type: `string`<br>
+Type: `string`
 
 A comma separated list of menu types. Available tags:
 
-Chicken: `Volaille`<br>
-Chinese: `Chinois`<br>
-Fish: `Poisson`<br>
-Green Fork: `Fourchette Verte`<br>
-Indian: `Indien`<br>
-Japanese: `Japonais`<br>
-Lebanese: `Libanais`<br>
-Meat: `Viande`<br>
-Pasta: `Pâtes`<br>
-Pizza: `Pizza`<br>
-Thai: `Thaï`<br>
-Vegan: `Végétalien`<br>
+Chicken: `Volaille`  
+Chinese: `Chinois`  
+Fish: `Poisson`  
+Green Fork: `Fourchette Verte`  
+Indian: `Indien`  
+Japanese: `Japonais`  
+Lebanese: `Libanais`  
+Meat: `Viande`  
+Pasta: `Pâtes`  
+Pizza: `Pizza`  
+Thai: `Thaï`  
+Vegan: `Végétalien`  
 Vegetarian: `Végétarien`
 
 ### .findResto([id])
@@ -138,15 +138,22 @@ Type: `function`
 
 Returns a Promise with a list of restaurant as parameter.
 
-##### id
+##### options
+
+Type: `object`
+
+Any of the following options.
+
+###### id
 
 Type: `number`
 
-Optional restaurant id.
+Restaurant id.
 
 See also
 --------
 
+* [eat-at-epfl](https://github.com/innovativeinnovation/eat-at-epfl)
 * [epfl-menu](https://github.com/gcmalloc/epfl-menu)
 
 Contributing
