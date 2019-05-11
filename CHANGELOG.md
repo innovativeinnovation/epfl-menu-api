@@ -1,6 +1,14 @@
 Changelog
 =========
 
+### v1.0.0 / 2019-05-11
+
+  - Add resto filter by id
+  - Verify `date`, `language` and `partOfDay` parameters
+  - Escape tabs in json before `parse`
+  - Test against Node.js 12
+  - Update dev dependencies
+
 ### v0.1.0 / 2019-04-22
 
   - Add method `findResto`
