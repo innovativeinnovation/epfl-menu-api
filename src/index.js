@@ -14,6 +14,22 @@ const DEFAULT_MENUS_OPTIONS = {
   partOfDay: 'midi'
 };
 
+const TAGS = {
+  'Volaille': 'Chicken',
+  'Chinois': 'Chinese',
+  'Poisson': 'Fish',
+  'Fourchette Verte': 'Green Fork',
+  'Indian': 'Indien',
+  'Japonais': 'Japanese',
+  'Libanais': 'Lebanese',
+  'Viande': 'Meat',
+  'Pâtes': 'Pasta',
+  'Pizza': 'Pizza',
+  'Thaï': 'Thai',
+  'Végétalien': 'Vegan',
+  'Végétarien': 'Vegetarian'
+};
+
 let buildMenuUrl = (opts) => {
   var queryParameters = '?midisoir=' + opts.partOfDay +
     '&lang=' + opts.language;
@@ -41,6 +57,22 @@ let escapeTab = (jsonString) => {
   return jsonString.replace(/\t/g, '\\t');
 };
 
+let prepareTags = (strTags) => {
+  let listTags = strTags.split(',');
+  return listTags.map(tag => tag.trim());
+};
+
+let checkTags = (listTags) => {
+  let isValid = true;
+  let validTags = Object.keys(TAGS);
+  for (var i = 0; i < listTags.length; i++) {
+    if (!validTags.includes(listTags[i])) {
+      isValid = false;
+    }
+  }
+  return isValid;
+};
+
 exports.findMenu = (opts = DEFAULT_MENUS_OPTIONS) => {
   opts.language = opts.language || DEFAULT_MENUS_OPTIONS.language;
   opts.partOfDay = opts.partOfDay || DEFAULT_MENUS_OPTIONS.partOfDay;
@@ -55,6 +87,14 @@ exports.findMenu = (opts = DEFAULT_MENUS_OPTIONS) => {
 
   if (opts.date && !moment(opts.date, 'DD/MM/YYYY', true).isValid()) {
     return Promise.reject(new TypeError('Not a valid date'));
+  }
+
+  if (opts.tags) {
+    let listTags = prepareTags(opts.tags);
+    if (!checkTags(listTags)) {
+      return Promise.reject(new TypeError('Not a valid tags'));
+    }
+    opts.tags = listTags.join(',');
   }
 
   const url = buildMenuUrl(opts);
