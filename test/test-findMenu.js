@@ -34,11 +34,20 @@ describe('epfl-menu-api findMenu', function () {
     );
   });
 
+  it('should throw an exception with a tag not supported', () => {
+    return epflMenuApi.findMenu({
+      'tags': 'Cheese'
+    }).then(() => {
+    }).catch(
+      (err) => err.message.should.equal('Not a valid tags')
+    );
+  });
+
   it('should contains at least 5 menus', function () {
     return epflMenuApi.findMenu({
       date: '18/04/2019',
       restoId: '22',
-      tags: 'Viande,Volaille,Pizza'
+      tags: 'Viande,Volaille,  Pizza '
     }).then((menus) => {
       var enoughMenus = Object.keys(menus).length > 4;
       enoughMenus.should.equal(true);
