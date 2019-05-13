@@ -73,7 +73,7 @@ let checkTags = (listTags) => {
   return isValid;
 };
 
-exports.findMenu = (opts = DEFAULT_MENUS_OPTIONS) => {
+let findMenu = (opts = DEFAULT_MENUS_OPTIONS) => {
   opts.language = opts.language || DEFAULT_MENUS_OPTIONS.language;
   opts.partOfDay = opts.partOfDay || DEFAULT_MENUS_OPTIONS.partOfDay;
 
@@ -97,7 +97,22 @@ exports.findMenu = (opts = DEFAULT_MENUS_OPTIONS) => {
     opts.tags = listTags.join(',');
   }
 
-  const url = buildMenuUrl(opts);
+  return getMenu(opts);
+};
+
+let getMenu = async function (opts) {
+  if (opts.restoId && isNaN(opts.restoId)) {
+    return Promise.reject(new TypeError('Not a valid restoId'));
+  }
+  let resto = await findResto(opts.restoId);
+  if (resto.length > 0) {
+    const url = buildMenuUrl(opts);
+    return promGetMenu(url);
+  }
+  return Promise.reject(new TypeError('Not a valid restoId'));
+};
+
+let promGetMenu = (url) => {
   return new Promise((resolve, reject) => {
     got(url).then((response) => {
       let jsonString = escapeTab(response.body);
@@ -107,7 +122,7 @@ exports.findMenu = (opts = DEFAULT_MENUS_OPTIONS) => {
   });
 };
 
-exports.findResto = (id) => {
+let findResto = (id) => {
   const url = buildRestoUrl(id);
   return new Promise((resolve, reject) => {
     got(url).then((response) => {
@@ -133,3 +148,6 @@ exports.translateTags = (strTags) => {
   }
   return translatedList.join(',');
 };
+
+exports.findMenu = findMenu;
+exports.findResto = findResto;
