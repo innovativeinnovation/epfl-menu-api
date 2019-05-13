@@ -116,3 +116,20 @@ exports.findResto = (id) => {
     }).catch((err) => reject(err));
   });
 };
+
+exports.translateTags = (strTags) => {
+  if (!strTags) {
+    throw new TypeError('Not a valid tags');
+  }
+
+  let listTags = prepareTags(strTags);
+  let translatedList = [];
+  for (var i = 0; i < listTags.length; i++) {
+    if (TAGS[listTags[i]]) {
+      translatedList.push(TAGS[listTags[i]]);
+    } else {
+      translatedList.push(listTags[i]);
+    }
+  }
+  return translatedList.join(',');
+};
