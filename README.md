@@ -69,6 +69,9 @@ epflMenuApi.findResto().then(function(restos) {
 }).catch(function(err) {
   console.log(err);
 });
+
+let tags = epflMenuApi.translateTags('Poisson,Viande,Chinois');
+console.log(tags)  //=> 'Fish,Meat,Chinese'
 ```
 
 API
@@ -149,6 +152,18 @@ Any of the following options.
 Type: `number`
 
 Restaurant id.
+
+### .translateTags(str)
+
+Type: `function`
+
+Translate tags from French to English.
+
+##### str
+
+Type: `string`
+
+Tags to translate.
 
 See also
 --------
