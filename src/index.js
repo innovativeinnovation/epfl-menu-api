@@ -3,6 +3,7 @@
  * See the LICENSE file for more details.
  */
 
+const querystring = require('querystring');
 const moment = require('moment');
 const got = require('got');
 
@@ -31,33 +32,30 @@ const TAGS = {
 };
 
 let buildMenuUrl = (opts) => {
-  var queryParameters = '?midisoir=' + opts.partOfDay +
-    '&lang=' + opts.language;
-  if (opts.restoId) {
-    queryParameters += '&resto_id=' + opts.restoId;
-  }
-  if (opts.date) {
-    queryParameters += '&date=' + opts.date;
-  }
-  if (opts.tags) {
-    queryParameters += '&tags=' + opts.tags;
-  }
-  return MENUS_URL + queryParameters;
+  var queryParameters = {
+    'midisoir': opts.partOfDay,
+    'resto_id': opts.restoId,
+    'lang': opts.language,
+    'date': opts.date,
+    'tags': opts.tags
+  };
+
+  return MENUS_URL + '?' + querystring.stringify(queryParameters);
 };
 
 let buildRestoUrl = (id) => {
-  var queryParameters = '';
-  if (id) {
-    queryParameters = '?resto_id=' + id;
-  }
-  return RESTOS_URL + queryParameters;
+  var queryParameters = {
+    'resto_id': id
+  };
+
+  return RESTOS_URL + '?' + querystring.stringify(queryParameters);
 };
 
 let escapeTab = (jsonString) => {
   return jsonString.replace(/\t/g, '\\t');
 };
 
-let prepareTags = (strTags) => {
+let splitTags = (strTags) => {
   let listTags = strTags.split(',');
   return listTags.map(tag => tag.trim());
 };
@@ -90,7 +88,7 @@ let findMenu = (opts = DEFAULT_MENUS_OPTIONS) => {
   }
 
   if (opts.tags) {
-    let listTags = prepareTags(opts.tags);
+    let listTags = splitTags(opts.tags);
     if (!checkTags(listTags)) {
       return Promise.reject(new TypeError('Not a valid tags'));
     }
@@ -137,7 +135,7 @@ exports.translateTags = (strTags) => {
     throw new TypeError('Not a valid tags');
   }
 
-  let listTags = prepareTags(strTags);
+  let listTags = splitTags(strTags);
   let translatedList = [];
   for (var i = 0; i < listTags.length; i++) {
     if (TAGS[listTags[i]]) {
