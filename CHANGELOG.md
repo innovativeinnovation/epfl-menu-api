@@ -1,6 +1,11 @@
 Changelog
 =========
 
+### v1.1.0 / 2019-05-18
+
+  - Add `translateTags` function
+  - Verify `tags` and `restoId` parameters
+
 ### v1.0.0 / 2019-05-11
 
   - Add resto filter by id
