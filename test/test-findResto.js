@@ -26,9 +26,9 @@ describe('epfl-menu-api findResto', function () {
   });
 
   it('should fail with a wrong service url', (done) => {
-    let epflMenuApiMock = rewire('../src/index.js');
+    const epflMenuApiMock = rewire('../src/index.js');
     epflMenuApiMock.__set__('RESTOS_URL', 'foobar');
-    let result = epflMenuApiMock.findResto();
+    const result = epflMenuApiMock.findResto();
     result.then((response) => {
       should.fail();
       done();
