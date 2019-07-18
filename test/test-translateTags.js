@@ -23,7 +23,7 @@ describe('epfl-menu-api translateTags', function () {
   });
 
   it('should translate tags "Poisson,Viande,Chinois,Toto"', function () {
-    let tags = epflMenuApi.translateTags('Poisson,Viande,Chinois,Toto');
+    const tags = epflMenuApi.translateTags('Poisson,Viande,Chinois,Toto');
     tags.should.equal('Fish,Meat,Chinese,Toto');
   });
 });

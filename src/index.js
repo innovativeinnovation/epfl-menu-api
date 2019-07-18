@@ -16,53 +16,53 @@ const DEFAULT_MENUS_OPTIONS = {
 };
 
 const TAGS = {
-  'Volaille': 'Chicken',
-  'Chinois': 'Chinese',
-  'Poisson': 'Fish',
+  Volaille: 'Chicken',
+  Chinois: 'Chinese',
+  Poisson: 'Fish',
   'Fourchette Verte': 'Green Fork',
-  'Indian': 'Indien',
-  'Japonais': 'Japanese',
-  'Libanais': 'Lebanese',
-  'Viande': 'Meat',
-  'Pâtes': 'Pasta',
-  'Pizza': 'Pizza',
-  'Thaï': 'Thai',
-  'Végétalien': 'Vegan',
-  'Végétarien': 'Vegetarian'
+  Indian: 'Indien',
+  Japonais: 'Japanese',
+  Libanais: 'Lebanese',
+  Viande: 'Meat',
+  Pâtes: 'Pasta',
+  Pizza: 'Pizza',
+  Thaï: 'Thai',
+  Végétalien: 'Vegan',
+  Végétarien: 'Vegetarian'
 };
 
-let buildMenuUrl = (opts) => {
+const buildMenuUrl = (opts) => {
   var queryParameters = {
-    'midisoir': opts.partOfDay,
-    'resto_id': opts.restoId,
-    'lang': opts.language,
-    'date': opts.date,
-    'tags': opts.tags
+    midisoir: opts.partOfDay,
+    resto_id: opts.restoId,
+    lang: opts.language,
+    date: opts.date,
+    tags: opts.tags
   };
 
   return MENUS_URL + '?' + querystring.stringify(queryParameters);
 };
 
-let buildRestoUrl = (id) => {
+const buildRestoUrl = (id) => {
   var queryParameters = {
-    'resto_id': id
+    resto_id: id
   };
 
   return RESTOS_URL + '?' + querystring.stringify(queryParameters);
 };
 
-let escapeTab = (jsonString) => {
+const escapeTab = (jsonString) => {
   return jsonString.replace(/\t/g, '\\t');
 };
 
-let splitTags = (strTags) => {
-  let listTags = strTags.split(',');
+const splitTags = (strTags) => {
+  const listTags = strTags.split(',');
   return listTags.map(tag => tag.trim());
 };
 
-let checkTags = (listTags) => {
+const checkTags = (listTags) => {
   let isValid = true;
-  let validTags = Object.keys(TAGS);
+  const validTags = Object.keys(TAGS);
   for (var i = 0; i < listTags.length; i++) {
     if (!validTags.includes(listTags[i])) {
       isValid = false;
@@ -71,7 +71,7 @@ let checkTags = (listTags) => {
   return isValid;
 };
 
-let findMenu = (opts = DEFAULT_MENUS_OPTIONS) => {
+const findMenu = (opts = DEFAULT_MENUS_OPTIONS) => {
   opts.language = opts.language || DEFAULT_MENUS_OPTIONS.language;
   opts.partOfDay = opts.partOfDay || DEFAULT_MENUS_OPTIONS.partOfDay;
 
@@ -88,7 +88,7 @@ let findMenu = (opts = DEFAULT_MENUS_OPTIONS) => {
   }
 
   if (opts.tags) {
-    let listTags = splitTags(opts.tags);
+    const listTags = splitTags(opts.tags);
     if (!checkTags(listTags)) {
       return Promise.reject(new TypeError('Not a valid tags'));
     }
@@ -98,11 +98,11 @@ let findMenu = (opts = DEFAULT_MENUS_OPTIONS) => {
   return getMenu(opts);
 };
 
-let getMenu = async function (opts) {
+const getMenu = async function (opts) {
   if (opts.restoId && isNaN(opts.restoId)) {
     return Promise.reject(new TypeError('Not a valid restoId'));
   }
-  let resto = await findResto(opts.restoId);
+  const resto = await findResto(opts.restoId);
   if (resto.length > 0) {
     const url = buildMenuUrl(opts);
     return promGetMenu(url);
@@ -110,17 +110,17 @@ let getMenu = async function (opts) {
   return Promise.reject(new TypeError('Not a valid restoId'));
 };
 
-let promGetMenu = (url) => {
+const promGetMenu = (url) => {
   return new Promise((resolve, reject) => {
     got(url).then((response) => {
-      let jsonString = escapeTab(response.body);
+      const jsonString = escapeTab(response.body);
       const data = JSON.parse(jsonString);
       resolve(data.menus);
     }).catch((err) => reject(err));
   });
 };
 
-let findResto = (id) => {
+const findResto = (id) => {
   const url = buildRestoUrl(id);
   return new Promise((resolve, reject) => {
     got(url).then((response) => {
@@ -135,8 +135,8 @@ exports.translateTags = (strTags) => {
     throw new TypeError('Not a valid tags');
   }
 
-  let listTags = splitTags(strTags);
-  let translatedList = [];
+  const listTags = splitTags(strTags);
+  const translatedList = [];
   for (var i = 0; i < listTags.length; i++) {
     if (TAGS[listTags[i]]) {
       translatedList.push(TAGS[listTags[i]]);

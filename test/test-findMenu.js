@@ -27,7 +27,7 @@ describe('epfl-menu-api findMenu', function () {
 
   it('should throw an exception with the part of the day "morning"', () => {
     return epflMenuApi.findMenu({
-      'partOfDay': 'morning'
+      partOfDay: 'morning'
     }).then(() => {
     }).catch(
       (err) => err.message.should.equal('Part of the day not supported')
@@ -36,7 +36,7 @@ describe('epfl-menu-api findMenu', function () {
 
   it('should throw an exception with the tag "Cheese"', () => {
     return epflMenuApi.findMenu({
-      'tags': 'Cheese'
+      tags: 'Cheese'
     }).then(() => {
     }).catch(
       (err) => err.message.should.equal('Not a valid tags')
@@ -45,7 +45,7 @@ describe('epfl-menu-api findMenu', function () {
 
   it('should throw an exception with the restoId "Cafétéria BC"', () => {
     return epflMenuApi.findMenu({
-      'restoId': 'Cafétéria BC'
+      restoId: 'Cafétéria BC'
     }).then(() => {
     }).catch(
       (err) => err.message.should.equal('Not a valid restoId')
@@ -54,7 +54,7 @@ describe('epfl-menu-api findMenu', function () {
 
   it('should throw an exception with the restoId "999999"', () => {
     return epflMenuApi.findMenu({
-      'restoId': 999999
+      restoId: 999999
     }).then(() => {
     }).catch(
       (err) => err.message.should.equal('Not a valid restoId')
@@ -83,9 +83,9 @@ describe('epfl-menu-api findMenu', function () {
   });
 
   it('should fail with a wrong service url', (done) => {
-    let epflMenuApiMock = rewire('../src/index.js');
+    const epflMenuApiMock = rewire('../src/index.js');
     epflMenuApiMock.__set__('MENUS_URL', 'foobar');
-    let result = epflMenuApiMock.findMenu();
+    const result = epflMenuApiMock.findMenu();
     result.then((response) => {
       should.fail();
       done();
