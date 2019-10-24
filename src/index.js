@@ -20,7 +20,7 @@ const TAGS = {
   Chinois: 'Chinese',
   Poisson: 'Fish',
   'Fourchette Verte': 'Green Fork',
-  Indian: 'Indien',
+  Indien: 'Indian',
   Japonais: 'Japanese',
   Libanais: 'Lebanese',
   Viande: 'Meat',
