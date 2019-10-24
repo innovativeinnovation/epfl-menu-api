@@ -1,6 +1,12 @@
 Changelog
 =========
 
+### v1.1.2 / 2019-10-24
+
+  - Fix Indian tag
+  - Test against Node.js 13
+  - Update dev dependencies
+
 ### v1.1.1 / 2019-07-19
 
   - Improve documentation
