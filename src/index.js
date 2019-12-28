@@ -61,14 +61,13 @@ const splitTags = (strTags) => {
 };
 
 const checkTags = (listTags) => {
-  let isValid = true;
   const validTags = Object.keys(TAGS);
   for (var i = 0; i < listTags.length; i++) {
     if (!validTags.includes(listTags[i])) {
-      isValid = false;
+      return false;
     }
   }
-  return isValid;
+  return true;
 };
 
 const findMenu = (opts = DEFAULT_MENUS_OPTIONS) => {
