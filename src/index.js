@@ -130,7 +130,7 @@ const findResto = (id) => {
   });
 };
 
-exports.translateTags = (strTags) => {
+const translateTags = (strTags) => {
   if (!strTags) {
     throw new TypeError('Not a valid tags');
   }
@@ -149,3 +149,4 @@ exports.translateTags = (strTags) => {
 
 exports.findMenu = findMenu;
 exports.findResto = findResto;
+exports.translateTags = translateTags;
