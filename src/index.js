@@ -60,14 +60,27 @@ const splitTags = (strTags) => {
   return listTags.map(tag => tag.trim());
 };
 
-const checkTags = (listTags) => {
-  const validTags = Object.keys(TAGS);
-  for (var i = 0; i < listTags.length; i++) {
-    if (!validTags.includes(listTags[i])) {
-      return false;
+const findTag = (str) => {
+  for (const key of Object.keys(TAGS)) {
+    if (str.toLowerCase() === key.toLowerCase() ||
+        str.toLowerCase() === TAGS[key].toLowerCase()) {
+      return key;
     }
   }
-  return true;
+  return null;
+};
+
+const buildValidTags = (listTags) => {
+  const validTags = [];
+  for (let i = 0; i < listTags.length; i++) {
+    const key = findTag(listTags[i]);
+    if (key) {
+      validTags.push(key);
+    } else {
+      return null;
+    }
+  }
+  return validTags;
 };
 
 const findMenu = (opts = DEFAULT_MENUS_OPTIONS) => {
@@ -87,8 +100,9 @@ const findMenu = (opts = DEFAULT_MENUS_OPTIONS) => {
   }
 
   if (opts.tags) {
-    const listTags = splitTags(opts.tags);
-    if (!checkTags(listTags)) {
+    let listTags = splitTags(opts.tags);
+    listTags = buildValidTags(listTags);
+    if (!listTags) {
       return Promise.reject(new TypeError('Not a valid tags'));
     }
     opts.tags = listTags.join(',');
