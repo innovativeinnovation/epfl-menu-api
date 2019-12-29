@@ -37,7 +37,7 @@ Usage
 -----
 
 ```javascript
-var epflMenuApi = require('epfl-menu-api');
+const epflMenuApi = require('epfl-menu-api');
 
 epflMenuApi.findMenu().then(function(menus) {
   console.log(menus[0].restoName);      //=> 'Le Corbusier'
@@ -70,8 +70,8 @@ epflMenuApi.findResto().then(function(restos) {
   console.log(err);
 });
 
-let tags = epflMenuApi.translateTags('Poisson,Viande,Chinois');
-console.log(tags)  //=> 'Fish,Meat,Chinese'
+const tags = epflMenuApi.translateTags('Poisson,Viande,Chinois');
+console.log(tags);  //=> 'Fish,Meat,Chinese'
 ```
 
 API
@@ -121,19 +121,19 @@ Type: `string`
 
 A comma separated list of menu types. Available tags:
 
-Chicken: `Volaille`  
-Chinese: `Chinois`  
-Fish: `Poisson`  
-Green Fork: `Fourchette Verte`  
-Indian: `Indien`  
-Japanese: `Japonais`  
-Lebanese: `Libanais`  
-Meat: `Viande`  
-Pasta: `Pâtes`  
-Pizza: `Pizza`  
-Thai: `Thaï`  
-Vegan: `Végétalien`  
-Vegetarian: `Végétarien`
+* `Chicken` or `Volaille`
+* `Chinese` or `Chinois`
+* `Fish` or `Poisson`
+* `Green Fork` or `Fourchette Verte`
+* `Indian` or `Indien`
+* `Japanese` or `Japonais`
+* `Lebanese` or `Libanais`
+* `Meat` or `Viande`
+* `Pasta` or `Pâtes`
+* `Pizza` or `Pizza`
+* `Thai` or `Thaï`
+* `Vegan` or `Végétalien`
+* `Vegetarian` or `Végétarien`
 
 ### .findResto([id])
 

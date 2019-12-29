@@ -65,7 +65,7 @@ describe('epfl-menu-api findMenu', function () {
     return epflMenuApi.findMenu({
       date: '18/04/2019',
       restoId: '22',
-      tags: 'Viande,Volaille,  Pizza '
+      tags: 'ViANde,Chicken,  Pizza '
     }).then((menus) => {
       var enoughMenus = Object.keys(menus).length > 4;
       enoughMenus.should.equal(true);
