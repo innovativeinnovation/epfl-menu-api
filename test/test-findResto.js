@@ -13,7 +13,7 @@ describe('epfl-menu-api findResto', function () {
 
   it('should contains at least 5 restos', function () {
     return epflMenuApi.findResto().then((restos) => {
-      var enoughRestos = Object.keys(restos).length > 4;
+      const enoughRestos = Object.keys(restos).length > 4;
       enoughRestos.should.equal(true);
     });
   });

@@ -67,7 +67,7 @@ describe('epfl-menu-api findMenu', function () {
       restoId: '22',
       tags: 'ViANde,Chicken,  Pizza '
     }).then((menus) => {
-      var enoughMenus = Object.keys(menus).length > 4;
+      const enoughMenus = Object.keys(menus).length > 4;
       enoughMenus.should.equal(true);
     });
   });
@@ -77,7 +77,7 @@ describe('epfl-menu-api findMenu', function () {
       date: '07/05/2019',
       language: 'fr'
     }).then((menus) => {
-      var enoughMenus = Object.keys(menus).length > 4;
+      const enoughMenus = Object.keys(menus).length > 4;
       enoughMenus.should.equal(true);
     });
   });

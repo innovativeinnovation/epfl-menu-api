@@ -32,7 +32,7 @@ const TAGS = {
 };
 
 const buildMenuUrl = (opts) => {
-  var queryParameters = {
+  const queryParameters = {
     midisoir: opts.partOfDay,
     resto_id: opts.restoId,
     lang: opts.language,
@@ -44,7 +44,7 @@ const buildMenuUrl = (opts) => {
 };
 
 const buildRestoUrl = (id) => {
-  var queryParameters = {
+  const queryParameters = {
     resto_id: id
   };
 
@@ -150,7 +150,7 @@ const translateTags = (strTags) => {
 
   const listTags = splitTags(strTags);
   const translatedList = [];
-  for (var i = 0; i < listTags.length; i++) {
+  for (let i = 0; i < listTags.length; i++) {
     if (TAGS[listTags[i]]) {
       translatedList.push(TAGS[listTags[i]]);
     } else {
