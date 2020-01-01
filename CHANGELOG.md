@@ -1,6 +1,12 @@
 Changelog
 =========
 
+### v2.0.0 / 2020-01-01
+
+  - Drop support for Node < 10
+  - Update dependencies
+  - Allow list of tags in English
+
 ### v1.1.2 / 2019-10-24
 
   - Fix Indian tag
