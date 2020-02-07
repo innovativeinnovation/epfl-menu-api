@@ -31,6 +31,14 @@ const TAGS = {
   Végétarien: 'Vegetarian'
 };
 
+// Accentuated tags aren't working
+const BUGGY_TAGS = {
+  Pâtes: 'tes',
+  Thaï: 'Tha',
+  Végétalien: 'talien',
+  Végétarien: 'tarien'
+};
+
 const buildMenuUrl = (opts) => {
   const queryParameters = {
     midisoir: opts.partOfDay,
@@ -70,12 +78,19 @@ const findTag = (str) => {
   return null;
 };
 
+const fixBuggyTags = (str) => {
+  if (str in BUGGY_TAGS) {
+    str = BUGGY_TAGS[str];
+  }
+  return str;
+};
+
 const buildValidTags = (listTags) => {
   const validTags = [];
   for (let i = 0; i < listTags.length; i++) {
     const key = findTag(listTags[i]);
     if (key) {
-      validTags.push(key);
+      validTags.push(fixBuggyTags(key));
     } else {
       return null;
     }

@@ -72,6 +72,16 @@ describe('epfl-menu-api findMenu', function () {
     });
   });
 
+  it('should contains at least 1 menus on 03/02/2020', function () {
+    return epflMenuApi.findMenu({
+      date: '03/02/2020',
+      tags: 'Végétalien'
+    }).then((menus) => {
+      const enoughMenus = Object.keys(menus).length > 0;
+      enoughMenus.should.equal(true);
+    });
+  });
+
   it('should parse menus of 23/12/2019', function () {
     return epflMenuApi.findMenu({
       date: '23/12/2019',
