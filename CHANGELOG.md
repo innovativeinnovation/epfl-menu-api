@@ -1,6 +1,12 @@
 Changelog
 =========
 
+### v2.0.1 / 2020-02-07
+
+  - Fix accentuated tags
+  - Update dependencies
+  - Reduce number of files included in package
+
 ### v2.0.0 / 2020-01-01
 
   - Drop support for Node < 10
