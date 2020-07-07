@@ -1,6 +1,11 @@
 Changelog
 =========
 
+### v2.0.2 / 2020-07-07
+
+  - Test against Node.js 14
+  - Update dependencies
+
 ### v2.0.1 / 2020-02-07
 
   - Fix accentuated tags
