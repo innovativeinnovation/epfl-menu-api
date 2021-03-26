@@ -61,9 +61,9 @@ describe('epfl-menu-api findMenu', function () {
     );
   });
 
-  it('should contains at least 5 menus on 16/10/2020', function () {
+  it('should contains at least 5 menus on 16/03/2021', function () {
     return epflMenuApi.findMenu({
-      date: '16/10/2020',
+      date: '16/03/2021',
       tags: 'ViANde,Chicken,  Pizza '
     }).then((menus) => {
       const enoughMenus = Object.keys(menus).length > 4;
@@ -71,10 +71,10 @@ describe('epfl-menu-api findMenu', function () {
     });
   });
 
-  it('should contains at least 1 menus on 30/10/2020', function () {
+  it('should contains at least 1 menus on 26/03/2021', function () {
     return epflMenuApi.findMenu({
-      date: '30/10/2020',
-      restoId: 23,
+      date: '26/03/2021',
+      restoId: 18,
       tags: 'Végétarien'
     }).then((menus) => {
       const enoughMenus = Object.keys(menus).length > 0;
@@ -82,9 +82,9 @@ describe('epfl-menu-api findMenu', function () {
     });
   });
 
-  it('should parse menus of 05/11/2020', function () {
+  it('should parse menus of 26/03/2021', function () {
     return epflMenuApi.findMenu({
-      date: '05/11/2020',
+      date: '26/03/2021',
       language: 'fr'
     }).then((menus) => {
       const enoughMenus = Object.keys(menus).length > 4;
