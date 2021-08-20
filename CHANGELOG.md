@@ -1,6 +1,12 @@
 Changelog
 =========
 
+### v3.0.0 / 2021-08-20
+
+  - Drop support for Node < 12
+  - Test against Node.js 16
+  - Update dev dependencies
+
 ### v2.0.4 / 2021-04-08
 
   - Update and clean dependencies
